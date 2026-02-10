@@ -163,6 +163,17 @@ if (config.models?.providers?.anthropic?.models) {
     }
 }
 
+// Clean up invalid 'dm' key from channel configs (restored from R2 backup)
+// This key causes clawdbot to reject the config and crash on startup
+if (config.channels?.telegram?.dm !== undefined) {
+    console.log('Removing invalid "dm" key from telegram channel config');
+        delete config.channels.telegram.dm;
+        }
+if (config.channels?.discord?.dm !== undefined) {
+    console.log('Removing invalid "dm" key from discord channel config');
+        delete config.channels.discord.dm;
+        }
+
 
 
 // Gateway configuration
